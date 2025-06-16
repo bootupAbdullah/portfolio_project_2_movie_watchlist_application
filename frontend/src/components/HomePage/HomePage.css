@@ -1,0 +1,28 @@
+.home-container-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.how-to-add-description-container {
+    border: 5px solid #996a71;
+    width: 80vh;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.how-to-add-description-1 li {
+    font-size: 1.2em;
+    font-weight: 900 ;
+}
+
+.homepage-image-div-1 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.image-1 {
+    width: 79vh;
+}

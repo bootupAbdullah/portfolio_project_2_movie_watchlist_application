@@ -1,0 +1,12 @@
+#watchlistList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: left;
+    list-style: none;
+}
+
+#watchlistItem {
+    padding-top: 20px
+}

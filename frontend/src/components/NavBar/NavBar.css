@@ -1,0 +1,24 @@
+.navbar{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.navbar-button-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    /* border: 3px solid #996a71; */
+    padding: 5px;
+    margin-top: 0px;
+    border-radius: 15px;
+
+}
+
+.navbar-buttons {
+    padding: 15px;
+    width: 10%;
+    font-size: 1.4em;
+    background-color: #ede8d0;
+    color: black;
+    border: 2px solid #996a71
+}

@@ -1,0 +1,36 @@
+#searchDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px ridge red; */
+    padding: 0px;
+}
+
+#searchForm {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#searchButton {
+    font-size: 30px;
+}
+
+#searchFormControl {
+    font-size: 35px;
+    margin-left: 180px;
+}
+
+#searchButton {
+    padding: 10px;
+    margin: 20px;
+}
+
+#addToWatchlistButton {
+    font-size: 30px;
+    margin: 20px;
+}
+
+.submitted {
+    background-color: red;
+}
