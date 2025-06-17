@@ -1,12 +1,13 @@
 const API_KEY = "5b053eb2";
 const BASE_URL = `http://www.omdbapi.com/`;
 
-const expressAPI = `http://3.90.140.106:3001/movies`;
+const expressAPI = import.meta.env.VITE_EXPRESS_API;
+
 
 // https://www.omdbapi.com/?i=tt3896198&apikey=5b053eb2  this is a tester for a correct response
 
 // gets a specific movie by ID number
-export const getMovies = async (searchTerm) => {
+export const getMoviesbyId   = async (searchTerm) => {
   const queryString = `?i=${searchTerm}&apikey=${API_KEY}`;
 
   try {
@@ -20,9 +21,9 @@ export const getMovies = async (searchTerm) => {
 };
 
 // snag movies from express api. gets everything from the DB.
-export const getMoviesFromExpress = async () => {
+export const getAllMovies = async () => {
   try {
-    const response = await fetch("http://3.90.140.106:3001/movies");
+    const response = await fetch(expressAPI);
     const data = await response.json();
     console.log(data);
     return data;
@@ -30,8 +31,42 @@ export const getMoviesFromExpress = async () => {
     console.error("Error fetching movies:", error);
   }
 };
+console.log(expressAPI)
 
-export const deleteMoviesFromExpress = async (movieId) => {
+export const addMovie = async (movie) => {
+  const expressAPI = import.meta.env.VITE_EXPRESS_API;
+  try {
+    const response = await fetch(expressAPI, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(movie),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Error adding movie:", error);
+    throw error;
+  }
+};
+
+export const updateMovieWatchedStatus = async (movieId, watchedStatus) => {
+  const expressAPI = import.meta.env.VITE_EXPRESS_API;
+  try {
+    const response = await fetch(`${expressAPI}/${movieId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ watched: watchedStatus }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error updating movie watched status: ', error);
+    throw error;
+  }
+};
+
+export const deleteMovie = async (movieId) => {
   try {
     const response = await fetch(expressAPI + '/' + movieId, {
       method: 'delete'

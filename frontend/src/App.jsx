@@ -8,7 +8,6 @@ import HomePage from './components/HomePage/HomePage';
 
 
 const App = () => {
-const API_BASE_URL = 'http://3.90.140.106:3001/movies';
 const [navBarState, setNavBarState] = useState('Home');
 const [movies, setMovies] = useState([]);
 
@@ -18,14 +17,13 @@ const handleNavBar = (theChosenPage) => {
 
 
 const fetchDataForMovies = async () => { 
-  const data = await movieService.getMoviesFromExpress()
+  const data = await movieService.getAllMovies()
   setMovies(data)
 }
 
   
-  
 const deleteFromWatchList = async (movieId) => {
-  await movieService.deleteMoviesFromExpress(movieId)
+  await movieService.deleteMovie(movieId)
   
   fetchDataForMovies()
 
@@ -34,25 +32,12 @@ const deleteFromWatchList = async (movieId) => {
 
 const handleCheckboxWatched = async (movieId, watchedStatus) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/${movieId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify({
-        watched: watchedStatus
-      })
-    })
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
+    await movieService.updateMovieWatchedStatus(movieId, watchedStatus);
     fetchDataForMovies();
-    await response.json();
-    } catch (error) {
-      console.error('Error updating movie watched status: ', error)
-    }
-}
+  } catch (error) {
+    console.error('Error updating movie watched status: ', error);
+  }
+};
 
 // const handleSubmit = async (event) => {
 //   event.preventDefault() //5.) prevents us from taking us to a different page

@@ -47,7 +47,7 @@ const Search = ({fetchDataForMovies}) => {
     <div id="searchDiv">
     <h1>Search</h1>
     <Navbar id="searchFormBar" className="justify-content-between">
-    <Form inline onSubmit={handleSubmit} id="searchForm">
+    <Form onSubmit={handleSubmit} id="searchForm">
         Please enter an imdbID of a movie you would like to add to your Watchlist: <br/>
         <br/>
         <Row>
