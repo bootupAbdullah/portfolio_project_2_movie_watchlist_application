@@ -76,15 +76,3 @@ return (
 }
 
 export default App;
-
-
-      // Refactored fetchMovies to be a standalone function
-      // const fetchMovies = async () => {
-      //   try {
-      //     const response = await fetch(API_BASE_URL);
-      //     const data = await response.json();
-      //     setMovies(data);
-      //     console.log(data);
-      //   } catch (error) {
-      //     console.error('Error fetching movies:', error);
-      //   }
