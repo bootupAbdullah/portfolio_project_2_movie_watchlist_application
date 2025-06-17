@@ -34,3 +34,32 @@
 .submitted {
     background-color: red;
 }
+
+
+.search-suggestions {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.search-suggestions-title {
+  font-weight: bold;
+  color: black;
+  font-family: inherit;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.search-suggestions-list {
+  display: inline-block;
+  text-align: left;
+  color: black;
+  font-family: inherit;
+  font-size: 1.5rem;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+}
+
+.search-suggestions-list li span {
+  font-weight: 400;
+  color: #222;
+}
