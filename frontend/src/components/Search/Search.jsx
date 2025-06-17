@@ -53,7 +53,7 @@ const Search = ({ fetchDataForMovies }) => {
             Try out the search with one of these IMDb IDs:
           </p>
           <ul className="search-suggestions-list">
-            <li>tt0111161 <span>(The Shawshank Redemption)</span></li>
+            <li>tt0892769 <span>(How To Train Your Dragon)</span></li>
             <li>tt0068646 <span>(The Godfather)</span></li>
             <li>tt0468569 <span>(The Dark Knight)</span></li>
             <li>tt0109830 <span>(Forrest Gump)</span></li>
