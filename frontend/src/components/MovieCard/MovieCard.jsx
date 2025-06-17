@@ -2,31 +2,42 @@ import React from "react";
 import "./MovieCard.css";
 
 const MovieCard = (props) => {
-  // console.log("MovieCard.jsx: " + props.deleteFromWatchList)
-  // console.log("MovieCard.jsx: " + props.handleCheckboxWatched)
+  const { movie, handleCheckboxWatched, deleteFromWatchList } = props;
+
   return (
-      <main className={`card ${props.movie.watched ? 'watched' : 'not-watched'}`}>
-        <img src={props.movie.Poster} alt="movie poster" />
-      {/* {console.log(props.movie)} */}
+    <main className={`card ${movie.watched ? 'watched' : 'not-watched'}`}>
+      <img src={movie.Poster} alt="movie poster" />
       <div className="card-content">
-        <h2>{props.movie.Title}</h2>
-          <ul className="movieInfo">
-            <li>Actors: {props.movie.Actors}</li>
-            <li>Plot: {props.movie.Plot}</li>
-            <li>Year: {props.movie.Year}</li>
-            <li>Genre: {props.movie.Genre}</li>
-            <li>Runtime: {props.movie.Runtime}</li>
+        <h2>{movie.Title}</h2>
+        <ul className="movieInfo">
+          <li>Actors: {movie.Actors}</li>
+          <li>Plot: {movie.Plot}</li>
+          <li>Year: {movie.Year}</li>
+          <li>Genre: {movie.Genre}</li>
+          <li>Runtime: {movie.Runtime}</li>
+          {typeof handleCheckboxWatched === "function" && (
             <li>
-            <input className="input-watched-checkbox" 
-            type="checkbox" 
-            checked={props.movie.watched}
-            onChange={() => props.handleCheckboxWatched(props.movie._id, !props.movie.watched )}
-            id="item1"
-            />
-            <label htmlFor="item1" id="checkboxLabel">{props.movie.watched ? 'watched' : 'not watched' }</label>
+              <input
+                className="input-watched-checkbox"
+                type="checkbox"
+                checked={movie.watched}
+                onChange={() => handleCheckboxWatched(movie._id, !movie.watched)}
+                id={`watched-checkbox-${movie._id}`}
+              />
+              <label htmlFor={`watched-checkbox-${movie._id}`} id="checkboxLabel">
+                {movie.watched ? 'watched' : 'not watched'}
+              </label>
             </li>
-          </ul>
-        <button className="delete-button" onClick={() => props.deleteFromWatchList(props.movie._id)}>Delete</button>
+          )}
+        </ul>
+        {typeof deleteFromWatchList === "function" && (
+          <button
+            className="delete-button"
+            onClick={() => deleteFromWatchList(movie._id)}
+          >
+            Delete
+          </button>
+        )}
       </div>
     </main>
   );

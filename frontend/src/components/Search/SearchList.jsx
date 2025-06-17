@@ -1,74 +1,55 @@
 import MovieCard from "../MovieCard/MovieCard"
-import axios from 'axios'
 import "./Search.css"
+import { addMovie } from "../../services/movieService";
 
 const SearchList = (props) => {
 
     const movie = props.foundTitle
 
 
-    const handleAdd = () => {
-        //event.preventDefault()
-            let data = JSON.stringify({
-            "Title": `${movie.Title}`,
-            "Plot": `${movie.Plot}`,
-            "Runtime": `${movie.Runtime}`,
-            "Rated": `${movie.Rated}`,
-            "Released": `${movie.Released}`,
-            "Genre": `${movie.Genre}`,
-            "Poster": `${movie.Poster}`,
-            "Director": `${movie.Director}`,
-            "Actors": `${movie.Actors}`,
-            "Awards": `${movie.Awards}`,
-            "watched": "false",
-            });
+// ...existing code...
 
-            let config = {
-            method: 'post',
-            maxBodyLength: Infinity,
-            url: 'http://3.90.140.106:3001/movies',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            data : data
-            };
-
-            axios.request(config)
-            .then((response) => {
-            console.log(JSON.stringify(response.data));
-            props.fetchDataForMovies(); //needs to be here to it is difinitively called after the post is finished
-
-            })
-            .catch((error) => {
-            console.log(error);
-            });
-        //console.log("Calling fetch data for movies")
-        //props.fetchDataForMovies();
-        //console.log("MOVIES FETCHED")
+const handleAdd = async (event) => {
+    try {
+        await addMovie({
+            Title: movie.Title,
+            Plot: movie.Plot,
+            Runtime: movie.Runtime,
+            Rated: movie.Rated,
+            Released: movie.Released,
+            Genre: movie.Genre,
+            Poster: movie.Poster,
+            Director: movie.Director,
+            Actors: movie.Actors,
+            Awards: movie.Awards,
+            watched: false,
+        });
+        props.fetchDataForMovies();
+        changeButtonColorOnClick(event);
+    } catch (error) {
+        console.log(error);
     }
+};
 
-    const changeButtonColorOnClick = (event) => {
-        event.target.className = 'submitted'
-        event.target.innerHTML = 'Added to Watchlist!'
-    }
+const changeButtonColorOnClick = (event) => {
+    event.target.className = 'submitted'
+    event.target.innerHTML = 'Added to Watchlist!'
+}
 
-    return (
+return (
+    <>
+        {movie === '' ? <br /> :
         <>
-            {movie === '' ? <br /> :
-            <>
-                <MovieCard movie={movie} />
-                <button 
-                    onClick={() => {
-                        handleAdd();
-                        changeButtonColorOnClick(event);
-                    }}
-                    id="addToWatchlistButton">
-                    Add To Watchlist
-                </button>
-            </>
-            }
+            <MovieCard movie={movie} />
+            <button 
+                onClick={handleAdd}
+                id="addToWatchlistButton">
+                Add To Watchlist
+            </button>
         </>
-    );
+        }
+    </>
+);
 }
 
 export default SearchList

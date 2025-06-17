@@ -3,9 +3,7 @@ import SearchList from '/src/components/Search/SearchList.jsx'
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import './Search.css'
 
 
@@ -47,7 +45,7 @@ const Search = ({fetchDataForMovies}) => {
     <div id="searchDiv">
     <h1>Search</h1>
     <Navbar id="searchFormBar" className="justify-content-between">
-    <Form inline onSubmit={handleSubmit} id="searchForm">
+    <Form onSubmit={handleSubmit} id="searchForm">
         Please enter an imdbID of a movie you would like to add to your Watchlist: <br/>
         <br/>
         <Row>
@@ -77,32 +75,8 @@ const Search = ({fetchDataForMovies}) => {
   
     </>
 )
-
 }
 
 export default Search
 
 
-//========================USE LATER/TRASH PILE====================================================
-
-    /* <p>Total Results: {resultsNumber}</p>
-    {foundTitle === '' ? <p>Title:  </p> : 
-    <ul>
-        {foundTitle.map((movie, index) => {
-            return <li key={index}>Title: {movie.Title}</li>
-        })}
-    </ul> */
-/* } */
-
-//const searchArray = 
-//setFoundTitle(JSONdata.Search) keeping a copy commented out to potentially use for finding by imdbID
-
-//setFoundTitle(JSONdata.Search[0].Title)
-// setResultsNumber(JSONdata.totalResults)
-
-// foundTitle.forEach(movie => {
-//     console.log(movie.title)
-// })
-//console.log(foundTitle)
-
- //const [resultsNumber, setResultsNumber] = useState('') //11.) *IN TRASH PILE* the number of results, lets the user know if they should narrow their search (searching for the movie seven yields 1524 results)
