@@ -38,6 +38,7 @@ app.put('/movies/:movieId', movieCtrl.fourthCommand);
 
 
 // <------------------------------------------- Start Server --------------------------------------->
-app.listen(3001, () => {
-  console.log('movie recommendation app is live, start posting');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`movie recommendation app is live, start posting on port ${PORT}`);
 });
